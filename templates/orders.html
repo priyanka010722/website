@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>My Orders</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<h1>My Orders</h1>
+
+{% for order in orders %}
+
+<div class="order-card">
+
+<h3>
+Order #{{ order._id }}
+</h3>
+
+<p>
+Status:
+{{ order.status }}
+</p>
+
+<p>
+Total:
+₹{{ order.total }}
+</p>
+
+<h4>Products</h4>
+
+<ul>
+
+{% for item in order.get("items", []) %}<li>
+
+{{ item.name }}
+
+-
+
+₹{{ item.price }}
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+{% endfor %}
+
+</body>
+
+</html>

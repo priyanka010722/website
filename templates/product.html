@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="product-card">
+    <div class="product-page">
+
+
+
+</div>
+
+    <img src="{{ product.image }}">
+
+    <h2>{{ product.name }}</h2>
+
+    <h3>₹{{ product.price }}</h3>
+
+    <p>{{ product.description }}</p>
+
+    <a href="/add_to_cart/{{ product._id }}">Add to Cart</a>
+    <br>
+    <a href="/add_to_wishlist/{{ product._id }}">Add to Wishlist ❤️</a>
+
+</div>
+
+</body>
+</html>
+
+

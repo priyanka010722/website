@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+
+    <h1>Search Results for "{{ keyword }}"</h1>
+
+{% for product in products %}
+    <div>
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.price }}</p>
+    </div>
+{% endfor %}
+
+<h2>Search Results for "{{ keyword }}"</h2>
+
+{% if products|length == 0 %}
+    <p>No products found</p>
+{% endif %}
+
+
+<div>
+    {% for product in products %}
+        <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+            <h3>{{ product.name }}</h3>
+            <p>₹{{ product.price }}</p>
+            <img src="{{ product.image }}" width="150">
+            <a href="/product/{{ product._id }}">View</a>
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

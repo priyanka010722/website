@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Checkout</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static',
+filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="checkout-container">
+
+<h1>Checkout</h1>
+
+{% for item in cart_items %}
+
+<div class="checkout-item">
+
+<h3>{{ item.name }}</h3>
+
+<p>₹{{ item.price }}</p>
+
+</div>
+
+{% endfor %}
+
+<h2>Total: ₹{{ total }}</h2>
+
+<form action="/place_order"
+method="POST">
+
+<button type="submit">
+Place Order
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>

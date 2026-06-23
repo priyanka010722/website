@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Products</title>
+   
+
+    <style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial,sans-serif;
+    }
+
+    body{
+        background:#f5f5f5;
+        padding:30px;
+    }
+
+    .header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:30px;
+    }
+
+    .header h1{
+        color:#333;
+    }
+
+    .add-btn{
+        background:#007bff;
+        color:white;
+        padding:12px 20px;
+        border-radius:6px;
+        text-decoration:none;
+    }
+
+    .products{
+        display:flex;
+        flex-wrap:wrap;
+        gap:25px;
+        justify-content:center;
+    }
+
+    .product-card{
+        width:300px;
+        background:white;
+        border-radius:10px;
+        overflow:hidden;
+        box-shadow:0 3px 10px rgba(0,0,0,.15);
+    }
+
+    .product-card img{
+        width:100%;
+        height:220px;
+        object-fit:cover;
+    }
+
+    .product-info{
+        padding:15px;
+        text-align:center;
+    }
+
+    .price{
+        color:green;
+        font-size:24px;
+        font-weight:bold;
+        margin:10px 0;
+    }
+
+    .buttons{
+        display:flex;
+        gap:10px;
+        margin-top:15px;
+    }
+
+    .edit-btn{
+        flex:1;
+        background:#007bff;
+        color:white;
+        text-decoration:none;
+        padding:10px;
+        border-radius:5px;
+    }
+
+    .delete-btn{
+        flex:1;
+        background:red;
+        color:white;
+        text-decoration:none;
+        padding:10px;
+        border-radius:5px;
+    }
+
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+
+    <h1>Manage Products</h1>
+
+    <a href="/admin/add_product" class="add-btn">
+        + Add Product
+    </a>
+
+</div>
+
+<div class="products">
+
+{% for p in products %}
+
+<div class="product-card">
+
+    <img src="{{ p.image }}">
+
+    <div class="product-info">
+
+        <h3>{{ p.name }}</h3>
+
+        <p class="price">₹{{ p.price }}</p>
+
+        <p>{{ p.description }}</p>
+
+        <div class="buttons">
+
+            <a href="/admin/edit_product/{{ p._id }}"
+               class="edit-btn">
+               Edit
+            </a>
+
+            <a href="/admin/delete_product/{{ p._id }}"
+               class="delete-btn">
+               Delete
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>
