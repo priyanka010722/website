@@ -10,11 +10,7 @@ load_dotenv()
 
 import os
 
-app = Flask(
-    __name__,
-    template_folder="templates",
-    static_folder="static"
-)  # ✅ THIS MUST BE FIRST
+app = Flask(__name__)  # ✅ THIS MUST BE FIRST
 
 app.secret_key = os.getenv("SECRET_KEY")
 
