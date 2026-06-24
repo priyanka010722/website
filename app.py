@@ -1,4 +1,3 @@
-import traceback
 from flask import Flask, render_template, request, redirect, session, flash
 from pymongo import MongoClient
 from dotenv import load_dotenv
@@ -9,9 +8,11 @@ import certifi
 load_dotenv()
 
 app = Flask(__name__)   # ✅ THIS MUST BE FIRST
-SECRET_KEY=mysecretkey123
 
-MONGO_URI = os,getenv("mongodb+srv://p11252160_db_user:Priyanka2026@cluster0.kvpcghf.mongodb.net/ecommer?retryWrites=true&w=majority")
+app.secret_key = os.getenv("SECRET_KEY")
+
+MONGO_URI = os.getenv("MONGO_URI")
+
 client = MongoClient(
     MONGO_URI,
     tls=True,
@@ -559,6 +560,10 @@ def update_order(id, status):
 def test():
     return "Flask is working!"
 
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
 @app.route("/make_admin")
 def make_admin():
 
@@ -573,12 +578,5 @@ def make_admin():
     )
 
     return "Admin created"
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
-
-
 
 
