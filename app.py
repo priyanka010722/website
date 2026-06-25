@@ -9,8 +9,7 @@ load_dotenv()
 
 app = Flask(__name__)   # ✅ THIS MUST BE FIRST
 
-app.secret_key = os.getenv("SECRET_KEY")
-
+app.secret_key = os.getenv("SECRET_KEY", "my-super-secret-key")
 MONGO_URI = "mongodb+srv://p11252160_db_user:Priyanka2026@cluster0.kvpcghf.mongodb.net/ecommer?retryWrites=true&w=majority"
 
 client = MongoClient(
@@ -561,8 +560,7 @@ def test():
     return "Flask is working!"
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
 
 @app.route("/make_admin")
 def make_admin():
@@ -580,3 +578,5 @@ def make_admin():
     return "Admin created"
 
 
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
