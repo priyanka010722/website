@@ -577,6 +577,23 @@ def make_admin():
 
     return "Admin created"
 
+    @app.route("/chat")
+def chat():
+    return render_template("chat.html")
+
+    from langchain.chat_models import ChatOpenAI
+
+llm = ChatOpenAI()
+
+def ask_ai(question):
+    return llm.predict(question)
+
+    @app.route("/ask", methods=["POST"])
+def ask():
+    user_msg = request.json["message"]
+    reply = ask_ai(user_msg)
+    return {"reply": reply}
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
