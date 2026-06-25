@@ -1,5 +1,4 @@
-# Railway redeploy test
-# from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash
 from pymongo import MongoClient
 from dotenv import load_dotenv
 from bson.objectid import ObjectId
@@ -8,21 +7,11 @@ import os
 import certifi
 load_dotenv()
 
-import os
-
-app = Flask(
-    __name__,
-    template_folder="templates",
-    static_folder="static"
-)
-
-print("Current directory:", os.getcwd())
-print("Templates exists:", os.path.exists("templates"))
-print("Login exists:", os.path.exists("templates/login.html")) # ✅ THIS MUST BE FIRST
+app = Flask(__name__)   # ✅ THIS MUST BE FIRST
 
 app.secret_key = os.getenv("SECRET_KEY")
 
-MONGO_URI = os.getenv("MONGO_URI")
+MONGO_URI = "mongodb+srv://p11252160_db_user:Priyanka2026@cluster0.kvpcghf.mongodb.net/ecommer?retryWrites=true&w=majority"
 
 client = MongoClient(
     MONGO_URI,
